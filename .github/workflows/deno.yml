@@ -1,0 +1,40 @@
+name: Deploy Development
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Compile backend
+        run: deno compile --allow-net --allow-read --output temp index.ts
+
+      - name: Publish to Worker
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./temp
+          remote: /root/terminal/terminal
+          host: ${{ secrets.Web_HOST }}
+          port: ${{ secrets.WEB_PORT }}
+          username: ${{ secrets.WEB_USERNAME }}
+          password: ${{ secrets.WEB_PASSWORD }}
+          
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.WEB_HOST }}
+          username: ${{ secrets.WEB_USERNAME }}
+          password: ${{ secrets.WEB_PASSWORD }}
+          port: ${{ secrets.WEB_PORT }}
+          script: /root/terminal/deploy.sh
