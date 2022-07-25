@@ -1,0 +1,60 @@
+body {
+    background-color: black;
+    color: lime;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.command {
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 1px solid rgb(33, 33, 33);
+}
+
+.question {
+    padding: 5px;
+}
+
+.loading {
+    padding-left: 18px;
+    width: 10px;
+}
+
+.answer {
+    padding: 5px;
+}
+
+#console {
+    padding-bottom: 30px;
+}
+
+#input {
+    display: block;
+    height: 30px;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    opacity: 1;
+}
+
+#input>input {
+    background-color: black;
+    color: lime;
+    border: solid 1px lime;
+    width: 80%;
+    height: 20px;
+}
+
+#input>input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 255, 0, 0.369);
+    opacity: 1;
+    /* Firefox */
+}
+
+#input>button {
+    background-color: black;
+    color: lime;
+    border: solid 1px lime;
+    width: 15%;
+    height: 20px;
+}
