@@ -1,8 +1,10 @@
 import { Application, Router } from "https://deno.land/x/oak@v10.6.0/mod.ts";
-import handleCommand from "./commands.ts";
+import CommandHandler from "./commands.ts";
 
 const app = new Application();
 const router = new Router();
+const commandHandler = new CommandHandler();
+commandHandler.setup();
 
 app.use(async (context, next) => {
   try {
@@ -16,7 +18,7 @@ app.use(async (context, next) => {
 });
 
 router.get("/api/:command", async (ctx) => {
-  ctx.response.body = await handleCommand(ctx.params.command);
+  ctx.response.body = await commandHandler.handleCommand(ctx.params.command);
 });
 
 app.use(router.routes());
