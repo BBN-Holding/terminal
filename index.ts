@@ -16,7 +16,7 @@ app.use(async (context, next) => {
 });
 
 router.get("/api/:command", async (ctx) => {
-  ctx.response.body = await handleCommand(ctx.params.command);;
+  ctx.response.body = await handleCommand(ctx.params.command);
 });
 
 app.use(router.routes());
