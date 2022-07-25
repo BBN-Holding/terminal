@@ -20,11 +20,21 @@ jobs:
       - name: Compile backend
         run: deno compile --allow-net --allow-read --output temp index.ts
 
-      - name: Publish to Worker
+      - name: Publish to Web
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: ./temp
           remote: /root/terminal/terminal
+          host: ${{ secrets.Web_HOST }}
+          port: ${{ secrets.WEB_PORT }}
+          username: ${{ secrets.WEB_USERNAME }}
+          password: ${{ secrets.WEB_PASSWORD }}
+          
+      - name: Publish to Web
+        uses: garygrossgarten/github-action-scp@v0.7.3
+        with:
+          local: ./public
+          remote: /root/terminal/public
           host: ${{ secrets.Web_HOST }}
           port: ${{ secrets.WEB_PORT }}
           username: ${{ secrets.WEB_USERNAME }}
