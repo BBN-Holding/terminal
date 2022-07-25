@@ -31,6 +31,7 @@ export default class CommandHandler {
                     resolve({ type: 'text', content: value() })
                 }
             });
+            resolve({ type: 'text', content: 'Command not found.' })
         });
     }
 }
