@@ -1,8 +1,7 @@
 export default class CommandHandler {
     commands = {
         "login": () => 'Welcome to the Terminal. Type "help" for a list of commands.',
-        "help": () => 'Available Commands: ' + Object.keys(this.commands).join(", "),
-        "test": () => "test",
+        "help": () => 'Available Commands: ' + Object.keys(this.commands).join(", ")
     }
 
     // Commands that aren't listed when executing help
